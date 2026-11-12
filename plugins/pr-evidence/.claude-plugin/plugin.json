@@ -1,0 +1,8 @@
+{
+  "name": "pr-evidence",
+  "version": "0.2.0",
+  "description": "Read-only peer-review and CI-check evidence report for your own merged PRs",
+  "author": {
+    "name": "Amri"
+  }
+}

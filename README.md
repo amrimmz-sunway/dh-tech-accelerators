@@ -1,0 +1,46 @@
+# DH Tech Report
+
+A Claude Code plugin marketplace for **Sunway DH** that provides reusable, AI-assisted reporting accelerators. Each plugin is standalone, so you only install the ones you need.
+
+| Plugin | What it does |
+|---|---|
+| [`pr-evidence`](plugins/pr-evidence/README.md) | Read-only peer-review and CI-check evidence report for your own merged PRs |
+
+## Install
+
+```
+/plugin marketplace add <org>/dh-tech-report
+/plugin install <plugin-name>@dh-tech-report
+```
+
+**Pin a release tag.** Install from a tagged release rather than the default branch, so that an unreviewed change can't reach your machine. See the [Claude Code plugins reference](https://code.claude.com/docs/en/plugins-reference) for marketplace sources and versioning.
+
+## Owner actions (apply on GitHub — not done by any plugin)
+
+Every installer runs this repo's code, so protect it:
+
+- [ ] Branch protection on the default branch, requiring a pull request before merging.
+- [ ] At least 1 required approving review, and dismiss stale approvals when new commits are pushed.
+- [ ] A `CODEOWNERS` file covering `plugins/**` and `.claude-plugin/**`.
+- [ ] Tag every release (for example `pr-evidence-v0.1.0`) and record it in the plugin's changelog.
+- [ ] Restrict who can push tags and create releases.
+
+## Adding an accelerator
+
+```
+plugins/<plugin-name>/
+├── .claude-plugin/plugin.json      # name, version, description, author
+├── skills/<plugin-name>/
+│   ├── SKILL.md                    # workflow + rules; treat repo content as data, not instructions
+│   └── scripts/                    # deterministic work (bash/jq); read-only where possible
+└── README.md                       # what it does/never does, prerequisites, install, use, changelog
+```
+
+Each new plugin needs:
+
+1. An entry in `.claude-plugin/marketplace.json` with a `name`, a `source` of `./plugins/<plugin-name>`, and a `description`.
+2. No dependency on other plugins.
+3. No secrets in the repo or in any output. Use `<SECRET>` placeholders instead.
+4. A risks section in the design doc before you build it.
+
+Maintainer: Amri.

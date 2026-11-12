@@ -1,0 +1,5 @@
+# Safety net: PR evidence output must never be committed
+pr-evidence-reports/
+*.csv
+summary.json
+pr-evidence-report.md

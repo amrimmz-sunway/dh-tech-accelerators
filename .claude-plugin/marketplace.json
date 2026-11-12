@@ -1,0 +1,13 @@
+{
+  "name": "dh-tech-report",
+  "owner": {
+    "name": "Amri"
+  },
+  "plugins": [
+    {
+      "name": "pr-evidence",
+      "source": "./plugins/pr-evidence",
+      "description": "Read-only peer-review and CI-check evidence report for your own merged PRs"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "name": "dh-tech-report",
+  "name": "dh-tech-accelerators",
   "owner": {
     "name": "Amri"
   },
@@ -8,6 +8,11 @@
       "name": "pr-evidence",
       "source": "./plugins/pr-evidence",
       "description": "Read-only peer-review and CI-check evidence report for your own merged PRs"
+    },
+    {
+      "name": "branch-split",
+      "source": "./plugins/branch-split",
+      "description": "Split one pile of uncommitted work into per-ticket branches: verified patches, an apply script you run, and the PR order"
     }
   ]
 }

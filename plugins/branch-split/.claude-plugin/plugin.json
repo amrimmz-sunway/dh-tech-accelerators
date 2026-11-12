@@ -1,0 +1,8 @@
+{
+  "name": "branch-split",
+  "version": "0.1.0",
+  "description": "Split one pile of uncommitted work into per-ticket branches: verified patches, an apply script you run, and the PR order",
+  "author": {
+    "name": "Amri"
+  }
+}

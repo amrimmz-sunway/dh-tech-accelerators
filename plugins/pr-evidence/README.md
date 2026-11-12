@@ -1,4 +1,4 @@
-# DH Tech Report: PR Evidence
+# DH Tech Accelerators: PR Evidence
 
 A Claude Code plugin that produces a read-only report on **peer review** and **automated CI checks** for an engineer's own merged GitHub PRs over a period. It's useful for KRA/KPI evidence, appraisals and audits.
 
@@ -22,8 +22,8 @@ Recommended: a [fine-grained personal access token](https://docs.github.com/en/a
 ## Install
 
 ```
-/plugin marketplace add <org>/dh-tech-report
-/plugin install pr-evidence@dh-tech-report
+/plugin marketplace add <org>/dh-tech-accelerators
+/plugin install pr-evidence@dh-tech-accelerators
 ```
 
 Pin a release tag for a stable version (see the root README).

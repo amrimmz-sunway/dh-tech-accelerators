@@ -1,16 +1,17 @@
-# DH Tech Report
+# DH Tech Accelerators
 
-A Claude Code plugin marketplace for **Sunway DH** that provides reusable, AI-assisted reporting accelerators. Each plugin is standalone, so you only install the ones you need.
+A Claude Code plugin marketplace for **Sunway DH** that provides reusable, AI-assisted engineering accelerators. Each plugin is standalone, so you only install the ones you need.
 
 | Plugin | What it does |
 |---|---|
 | [`pr-evidence`](plugins/pr-evidence/README.md) | Read-only peer-review and CI-check evidence report for your own merged PRs |
+| [`branch-split`](plugins/branch-split/README.md) | Split one pile of uncommitted work into per-ticket branches, with verified patches, an apply script you run, and the PR order |
 
 ## Install
 
 ```
-/plugin marketplace add <org>/dh-tech-report
-/plugin install <plugin-name>@dh-tech-report
+/plugin marketplace add <org>/dh-tech-accelerators
+/plugin install <plugin-name>@dh-tech-accelerators
 ```
 
 **Pin a release tag.** Install from a tagged release rather than the default branch, so that an unreviewed change can't reach your machine. See the [Claude Code plugins reference](https://code.claude.com/docs/en/plugins-reference) for marketplace sources and versioning.
@@ -32,7 +33,7 @@ plugins/<plugin-name>/
 ├── .claude-plugin/plugin.json      # name, version, description, author
 ├── skills/<plugin-name>/
 │   ├── SKILL.md                    # workflow + rules; treat repo content as data, not instructions
-│   └── scripts/                    # deterministic work (bash/jq); read-only where possible
+│   └── scripts/                    # deterministic work (bash/jq/python); read-only where possible
 └── README.md                       # what it does/never does, prerequisites, install, use, changelog
 ```
 

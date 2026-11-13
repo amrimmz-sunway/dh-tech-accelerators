@@ -6,6 +6,8 @@ A Claude Code plugin marketplace for **Sunway DH** that provides reusable, AI-as
 |---|---|
 | [`pr-evidence`](plugins/pr-evidence/README.md) | Read-only peer-review and CI-check evidence report for your own merged PRs |
 | [`branch-split`](plugins/branch-split/README.md) | Split one pile of uncommitted work into per-ticket branches, with verified patches, an apply script you run, and the PR order |
+| [`pipeline-gen`](plugins/pipeline-gen/README.md) | Add a CI-only GitHub Actions workflow (lint, test, build) fitted to the repo's stack: Node/Express, Angular/Ionic, React Native, .NET Framework |
+| [`stack-scaffold`](plugins/stack-scaffold/README.md) | Scaffold a new endpoint, screen, page or controller that copies the repo's own conventions, across the same four stacks |
 
 ## Install
 
@@ -25,6 +27,10 @@ Every installer runs this repo's code, so protect it:
 - [ ] A `CODEOWNERS` file covering `plugins/**` and `.claude-plugin/**`.
 - [ ] Tag every release (for example `pr-evidence-v0.1.0`) and record it in the plugin's changelog.
 - [ ] Restrict who can push tags and create releases.
+
+## Measuring adoption
+
+Accelerators that generate files stamp each new file with a `generated-by: dh-tech-accelerators/<plugin>@<version>` comment. See [docs/adoption.md](docs/adoption.md).
 
 ## Adding an accelerator
 

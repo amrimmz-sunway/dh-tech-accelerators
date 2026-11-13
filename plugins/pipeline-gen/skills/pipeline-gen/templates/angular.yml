@@ -1,0 +1,38 @@
+  build:
+    name: Lint, test, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: [[PROJECT_DIR]]
+    steps:
+[[INCLUDE:_node-setup.yml]]
+#@if LINT
+      - name: Lint
+        run: [[RUN]] lint
+#@endif
+#@if TEST
+#@if KARMA
+      - name: Unit tests (headless Chrome)
+        run: [[RUN]] test [[ARGSEP]]--watch=false --browsers=ChromeHeadless
+#@else
+      - name: Unit tests
+        run: [[RUN]] test
+        env:
+          CI: 'true'
+#@endif
+#@else
+      # No "test" script in package.json, so there is no Test step.
+#@endif
+#@if BUILD
+      - name: Build
+        run: [[RUN]] build
+#@else
+      - name: Build
+        run: npx ng build
+#@endif
+#@if AUDIT
+      - name: Dependency audit (report only)
+        run: [[AUDIT_CMD]]
+        continue-on-error: true
+#@endif

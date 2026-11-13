@@ -1,0 +1,19 @@
+# generated-by: dh-tech-accelerators/pipeline-gen@[[PLUGIN_VERSION]]
+# CI only: lint, test, build. No deploy, no signing, no secrets (except the opt-in SonarCloud job).
+# Edit freely after generation; re-running pipeline-gen will not overwrite this file without --force.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [[[BRANCHES]]]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:

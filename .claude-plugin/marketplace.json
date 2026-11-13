@@ -13,6 +13,16 @@
       "name": "branch-split",
       "source": "./plugins/branch-split",
       "description": "Split one pile of uncommitted work into per-ticket branches: verified patches, an apply script you run, and the PR order"
+    },
+    {
+      "name": "pipeline-gen",
+      "source": "./plugins/pipeline-gen",
+      "description": "Generate a CI-only GitHub Actions workflow (lint, test, build) for Node/Express, Angular/Ionic, React Native and .NET Framework repos, with pinned actions and no secrets"
+    },
+    {
+      "name": "stack-scaffold",
+      "source": "./plugins/stack-scaffold",
+      "description": "Scaffold a new feature (API endpoint, screen, page or controller) that copies the repo's own conventions, for Node/Express, React Native, Angular/Ionic and .NET Framework"
     }
   ]
 }

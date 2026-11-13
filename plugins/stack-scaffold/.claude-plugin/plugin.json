@@ -1,0 +1,8 @@
+{
+  "name": "stack-scaffold",
+  "version": "0.1.0",
+  "description": "Scaffold a new feature (API endpoint, screen, page or controller) that copies the repo's own conventions, for Node/Express, React Native, Angular/Ionic and .NET Framework",
+  "author": {
+    "name": "Amri"
+  }
+}

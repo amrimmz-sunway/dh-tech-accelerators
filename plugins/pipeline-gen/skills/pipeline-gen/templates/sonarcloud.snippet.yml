@@ -1,0 +1,17 @@
+
+  sonar:
+    name: SonarCloud scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    # Needs repository secret SONAR_TOKEN and a sonar-project.properties
+    # (sonar.organization, sonar.projectKey) at the repo root.
+    # Fork PRs don't receive secrets, so the scan is skipped for them.
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    steps:
+      - uses: actions/checkout@[[PIN:actions/checkout]]
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: SonarSource/sonarqube-scan-action@[[PIN:SonarSource/sonarqube-scan-action]]
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

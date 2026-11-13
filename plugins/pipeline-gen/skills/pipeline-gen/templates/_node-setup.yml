@@ -1,0 +1,16 @@
+      - uses: actions/checkout@[[PIN:actions/checkout]]
+        with:
+          persist-credentials: false
+#@if COREPACK
+      - name: Enable corepack
+        run: corepack enable
+#@endif
+      - uses: actions/setup-node@[[PIN:actions/setup-node]]
+        with:
+          node-version: '[[NODE_VERSION]]'
+#@if LOCKFILE
+          cache: [[CACHE]]
+          cache-dependency-path: [[LOCKFILE_PATH]]
+#@endif
+      - name: Install dependencies
+        run: [[INSTALL_CMD]]

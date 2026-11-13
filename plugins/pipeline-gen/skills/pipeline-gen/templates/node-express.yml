@@ -1,0 +1,32 @@
+  build:
+    name: Lint, test, audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: [[PROJECT_DIR]]
+    steps:
+[[INCLUDE:_node-setup.yml]]
+#@if LINT
+      - name: Lint
+        run: [[RUN]] lint
+#@endif
+#@if TEST
+      - name: Test
+        run: [[RUN]] test
+        env:
+          CI: 'true'
+          NODE_ENV: test
+#@else
+      # No "test" script in package.json, so there is no Test step.
+      # Add one (for example jest or mocha), then add: - run: [[RUN]] test
+#@endif
+#@if BUILD
+      - name: Build
+        run: [[RUN]] build
+#@endif
+#@if AUDIT
+      - name: Dependency audit (report only)
+        run: [[AUDIT_CMD]]
+        continue-on-error: true
+#@endif

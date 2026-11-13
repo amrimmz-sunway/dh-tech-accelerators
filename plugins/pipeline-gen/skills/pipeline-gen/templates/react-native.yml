@@ -1,0 +1,83 @@
+  js:
+    name: Lint and test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: [[PROJECT_DIR]]
+    steps:
+[[INCLUDE:_node-setup.yml]]
+#@if LINT
+      - name: Lint
+        run: [[RUN]] lint
+#@endif
+#@if TYPECHECK
+      - name: Type check
+        run: npx tsc --noEmit
+#@endif
+#@if TEST
+      - name: Test
+        run: [[RUN]] test [[ARGSEP]]--ci
+        env:
+          CI: 'true'
+#@else
+      # No "test" script in package.json, so there is no Test step.
+#@endif
+#@if ANDROID
+
+  android:
+    name: Android debug build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: [[PROJECT_DIR]]
+    steps:
+[[INCLUDE:_node-setup.yml]]
+      - uses: actions/setup-java@[[PIN:actions/setup-java]]
+        with:
+          distribution: temurin
+          java-version: '[[JAVA_VERSION]]'
+          cache: gradle
+      - name: Assemble debug APK
+        working-directory: [[ANDROID_DIR]]
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug --no-daemon --stacktrace
+#@endif
+#@if IOS
+
+  ios:
+    name: iOS simulator build
+    # macOS minutes cost ~10x Linux minutes; keep this opt-in.
+    runs-on: macos-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: [[PROJECT_DIR]]
+    steps:
+[[INCLUDE:_node-setup.yml]]
+#@if GEMFILE
+      - uses: ruby/setup-ruby@[[PIN:ruby/setup-ruby]]
+        with:
+          bundler-cache: true
+          working-directory: [[PROJECT_DIR]]
+      - name: Install pods
+        working-directory: [[IOS_DIR]]
+        run: bundle exec pod install
+#@else
+      - name: Install pods
+        working-directory: [[IOS_DIR]]
+        run: pod install
+#@endif
+      - name: Build for simulator (unsigned)
+        run: >-
+          xcodebuild
+          -workspace [[IOS_WORKSPACE]]
+          -scheme [[IOS_SCHEME]]
+          -configuration Debug
+          -sdk iphonesimulator
+          -destination 'generic/platform=iOS Simulator'
+          CODE_SIGNING_ALLOWED=NO
+          build
+#@endif

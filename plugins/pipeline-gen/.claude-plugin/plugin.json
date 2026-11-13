@@ -1,0 +1,8 @@
+{
+  "name": "pipeline-gen",
+  "version": "0.1.0",
+  "description": "Generate a CI-only GitHub Actions workflow (lint, test, build) for Node/Express, Angular/Ionic, React Native and .NET Framework repos, with pinned actions and no secrets",
+  "author": {
+    "name": "Amri"
+  }
+}

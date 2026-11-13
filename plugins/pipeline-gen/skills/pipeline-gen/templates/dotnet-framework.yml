@@ -1,0 +1,22 @@
+  build:
+    name: Restore and build
+    runs-on: windows-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@[[PIN:actions/checkout]]
+        with:
+          persist-credentials: false
+      - uses: NuGet/setup-nuget@[[PIN:NuGet/setup-nuget]]
+      - uses: microsoft/setup-msbuild@[[PIN:microsoft/setup-msbuild]]
+      - name: Restore NuGet packages
+        run: nuget restore "[[SOLUTION]]"
+      - name: Build
+        run: msbuild "[[SOLUTION]]" /m /nologo /verbosity:minimal /p:Configuration=Release /p:DeployOnBuild=false
+#@if TESTS
+      # Test projects found: [[TEST_PROJECTS]]
+      # Add a vstest step once they build in CI, for example:
+      # - run: vstest.console.exe (Get-ChildItem -Recurse -Filter *Tests.dll -Path . | Where-Object FullName -like '*\bin\Release\*').FullName
+#@endif

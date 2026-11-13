@@ -91,4 +91,5 @@ All percentages and hours are rounded to 1 decimal.
 
 ## Changelog
 
+- **0.2.0**: Moved from the `dh-tech-report` marketplace to `dh-tech-accelerators`. Default output folder is now `~/Documents/pr-evidence-reports` (falling back to `~/pr-evidence-reports` when there is no Documents folder), overridable with the new `PR_EVIDENCE_DIR` environment variable. Documented Windows permissions and iCloud/OneDrive sync behaviour for the output folder.
 - **0.1.0**: initial release.

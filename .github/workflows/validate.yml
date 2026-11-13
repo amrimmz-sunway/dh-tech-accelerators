@@ -1,0 +1,27 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Pinned to the SHA in plugins/pipeline-gen/skills/pipeline-gen/scripts/pins.json (v7.0.1)
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - name: Ensure shellcheck
+        run: command -v shellcheck || (sudo apt-get update && sudo apt-get install -y shellcheck)
+      - name: Marketplace self-check
+        run: bash scripts/check.sh

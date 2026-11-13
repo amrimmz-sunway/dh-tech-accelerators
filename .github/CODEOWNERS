@@ -1,0 +1,5 @@
+# Every installer runs this code, so changes need the maintainer's review.
+/plugins/         @amrimmz-sunway
+/.claude-plugin/  @amrimmz-sunway
+/.github/         @amrimmz-sunway
+/scripts/         @amrimmz-sunway

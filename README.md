@@ -9,6 +9,8 @@ A Claude Code plugin marketplace for **Sunway DH** that provides reusable, AI-as
 | [`pipeline-gen`](plugins/pipeline-gen/README.md) | Add a CI-only GitHub Actions workflow (lint, test, build) fitted to the repo's stack: Node/Express, Angular/Ionic, React Native, .NET Framework |
 | [`stack-scaffold`](plugins/stack-scaffold/README.md) | Scaffold a new endpoint, screen, page or controller that copies the repo's own conventions, across the same four stacks |
 
+The full inventory, including team tools that live in other repos, with authors, versions, release tags and design docs, is in [docs/tools.md](docs/tools.md).
+
 ## Install
 
 ```
@@ -24,9 +26,14 @@ Every installer runs this repo's code, so protect it:
 
 - [ ] Branch protection on the default branch, requiring a pull request before merging.
 - [ ] At least 1 required approving review, and dismiss stale approvals when new commits are pushed.
-- [ ] A `CODEOWNERS` file covering `plugins/**` and `.claude-plugin/**`.
+- [x] A `CODEOWNERS` file covering `plugins/**` and `.claude-plugin/**` ([.github/CODEOWNERS](.github/CODEOWNERS)).
 - [ ] Tag every release (for example `pr-evidence-v0.1.0`) and record it in the plugin's changelog.
 - [ ] Restrict who can push tags and create releases.
+- [ ] Make the `validate` workflow a required status check on the default branch.
+
+## Releases
+
+Tag each release as `<plugin>-v<version>`, matching the `version` in the plugin's `plugin.json` and the top entry of its README changelog. [`scripts/check.sh`](scripts/check.sh) runs on every PR (via `.github/workflows/validate.yml`) and fails when the manifest, versions, changelogs, design docs or script syntax are out of step. Run it locally with `bash scripts/check.sh` before opening a PR.
 
 ## Measuring adoption
 
@@ -48,6 +55,7 @@ Each new plugin needs:
 1. An entry in `.claude-plugin/marketplace.json` with a `name`, a `source` of `./plugins/<plugin-name>`, and a `description`.
 2. No dependency on other plugins.
 3. No secrets in the repo or in any output. Use `<SECRET>` placeholders instead.
-4. A risks section in the design doc before you build it.
+4. A design doc at `docs/design/<plugin-name>.md` with a `## Risks` section, written before you build it.
+5. A row in [docs/tools.md](docs/tools.md) and a changelog entry for every version.
 
 Maintainer: Amri.
